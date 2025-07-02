@@ -1,0 +1,164 @@
+@font-face {
+    font-family: "Inter";
+    font-weight: 100;
+    src: local("Inter"), url(./fonts/Inter.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "Inter";
+    font-weight: 200;
+    src: local("Inter"), url(./fonts/Inter.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "Inter";
+    font-weight: 300;
+    src: local("Inter"), url(./fonts/Inter.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "Inter";
+    font-weight: 400;
+    src: local("Inter"), url(./fonts/Inter.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "Inter";
+    font-weight: 500;
+    src: local("Inter"), url(./fonts/Inter.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "Inter";
+    font-weight: 600;
+    src: local("Inter"), url(./fonts/Inter.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "Inter";
+    font-weight: 700;
+    src: local("Inter"), url(./fonts/Inter.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "Inter";
+    font-weight: 800;
+    src: local("Inter"), url(./fonts/Inter.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "Inter";
+    font-weight: 900;
+    src: local("Inter"), url(./fonts/Inter.ttf) format("truetype");
+}
+
+body {
+    margin: 0;
+    color: aliceblue;
+    background-color: #4b4c50;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+header {
+    background-color: #4b4c50;
+    padding-top: 40px;
+}
+
+.text-content {
+    margin-left: 2%;
+    max-width: min-content;
+    margin-top: 2%;
+    text-shadow: 2px 2px 5px #000;
+}
+
+header h1 {
+    margin: 0;
+    color: #ddd;
+    font-family: "Palatino Linotype";
+    text-align: left;
+    line-height: 1em;
+    font-size: calc(3rem + 1vw);
+}
+
+header h1 .first-word {
+    display: block;
+    margin: 0;
+    line-height: 0.6;
+}
+
+header p {
+    font-family: "Palatino Linotype";
+    line-height: 1.2;
+    text-align: left;
+    font-size: calc(1rem + 0.5vw);
+}
+
+header hr {
+    border: none;
+    background: linear-gradient(to bottom, #000 30%, #262b31 50%, #262b31 70%);
+    height: 3px;
+    width: 100%;
+    margin-bottom: revert;
+}
+
+header hr.short {
+    margin: auto;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    flex-direction: row;
+    background-image: url("https://theinflation.tv/media/header_background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+footer {
+    text-align: center;
+    bottom: 0;
+    position: relative;
+}
+
+.footer-container {
+    background-color: #2b3036;
+    border-radius: 10px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    font-size: 14px;
+    word-wrap: break-word;
+}
+
+footer p {
+    color: #ddd;
+    text-align: left;
+    margin: 10px 10px;
+}
+
+footer .left {
+    background-color: #3e383a;
+    /* height: 100%; */
+    flex-grow: 1;
+}
+
+footer .right {
+    background-color: #2b3036;
+    height: 100%;
+    flex-grow: 1;
+    width: -webkit-fill-available;
+}
+
+.footer-item {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+

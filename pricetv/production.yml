@@ -1,0 +1,31 @@
+version: '3'
+
+volumes:
+  production_traefik: {}
+
+services:
+
+  frontend:
+    restart: always
+    build:
+      context: .
+      dockerfile: ./compose/production/frontend/Dockerfile
+    image: production_frontend
+    #command: serve -s /app/build
+    
+
+  traefik:
+    restart: always
+    build:
+      context: .
+      dockerfile: ./compose/production/traefik/Dockerfile
+    image: inflation_tv_production_traefik
+    depends_on:
+      - frontend
+    volumes:
+      - production_traefik:/etc/traefik/acme:z
+    ports:
+      - "0.0.0.0:80:80"
+      - "0.0.0.0:443:443"
+    extra_hosts:
+      - "django:192.168.10.117"

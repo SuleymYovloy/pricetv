@@ -1,0 +1,95 @@
+entryPoints:
+  web:
+    address: ":80"
+    http:
+      redirections:
+        entryPoint:
+          to: web-secure
+
+  web-secure:
+    # https
+    address: ":443"
+
+
+certificatesResolvers:
+  letsencrypt:
+    acme:
+      email: "nikita.mikhailov.1@gmail.com"
+      storage: /etc/traefik/acme/acme.json
+      httpChallenge:
+        entryPoint: web
+
+http:
+  routers:
+    backend-secure-router:
+      rule: "Host(`theinflation.tv`) && (PathPrefix(`/api`) || PathPrefix(`/auth-token`) || PathPrefix(`/5wmIjndFfnVDkEunVMskrSIqvWLZp5i3`) || PathPrefix(`/static/admin`))"
+      entryPoints:
+        - web-secure
+      middlewares:
+        - csrf
+      service: django
+      priority: 2
+      tls:
+        # https://docs.traefik.io/master/routing/routers/#certresolver
+        certResolver: letsencrypt
+
+    media-router:
+      rule: "Host(`theinflation.tv`) && PathPrefix(`/media`)"
+      entryPoints:
+        - web-secure
+      service: nginx-media
+      priority: 3
+      tls:
+        # https://docs.traefik.io/master/routing/routers/#certresolver
+        certResolver: letsencrypt
+
+    web-secure-router:
+      rule: "Host(`theinflation.tv`)"
+      entryPoints:
+        - web-secure
+      middlewares:        
+        - ratelimit
+        - limit
+      service: frontend
+      priority: 1
+      tls:
+        certResolver: letsencrypt
+
+
+  middlewares:
+    csrf:
+      # https://docs.traefik.io/master/middlewares/headers/#hostsproxyheaders
+      # https://docs.djangoproject.com/en/dev/ref/csrf/#ajax
+      headers:
+        hostsProxyHeaders: ["X-CSRFToken"]
+    ratelimit:
+      rateLimit:
+        burst: 10000
+
+    limit:
+      buffering:
+        maxResponseBodyBytes: 10000000
+
+  services:
+    frontend:
+      loadBalancer:
+        servers:
+          - url: http://frontend:3000
+    
+    django:
+      loadBalancer:
+        servers:
+          - url: http://django:5443
+
+    nginx-media:
+      loadBalancer:
+        servers:
+          - url: http://django:80
+
+
+providers:
+  # https://docs.traefik.io/master/providers/file/
+  file:
+    filename: /etc/traefik/traefik.yml
+    watch: true
+
