@@ -1,121 +1,222 @@
-import { styled } from '@mui/system';
+import { styled } from "@mui/system";
 
-export const Parent = styled('div')(() => ({
-    display: 'grid',
-    gridTemplateColumns: 'repeat(6, 1fr)',
-    gridTemplateRows: 'repeat(5, 1fr)',
-    gridColumnGap: ' 5px',
-    gridRowGap: '5px',
-    height: '97vh',
-    padding: '7px'
+export const Parent = styled("div")(() => ({
+    display: "grid",
+    gridTemplateColumns: "repeat(6, 1fr)",
+    gridTemplateRows: "repeat(5, 1fr)",
+    gridColumnGap: " 15px",
+    gridRowGap: "15px",
+    height: "97vh",
+    padding: "20px",
+    backgroundColor: "var(--bg-dark)",
+    color: "var(--text-primary)",
+
+    "@media (max-width: 600px)": {
+        gridTemplateColumns: "1fr",
+        gridTemplateRows: "auto",
+        height: "auto",
+        padding: "10px",
+    },
 }));
 
-export const ImgGrid = styled('div')(() => ({
-    gridArea: '1 / 1 / 3 / 2',
-    padding: '3px',
-    // border: '1px solid'
+export const ImgGrid = styled("div")(() => ({
+    gridArea: "1 / 1 / 3 / 2",
+    padding: "10px",
+    backgroundColor: "var(--bg-medium)",
+    borderRadius: "8px",
+    boxShadow: "var(--shadow-soft)",
+    border: "var(--border-subtle)",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+
+    "@media (max-width: 600px)": {
+        gridArea: "auto",
+        height: "200px",
+    },
 }));
 
-export const GrafGrid = styled('div')(() => ({
-    gridArea: '3 / 1 / 5 / 5',
-    padding: '5px'
-    // border: '1px solid'
+export const DescGrid = styled("div")(() => ({
+    gridArea: "1 / 2 / 3 / 5",
+    padding: "20px",
+    height: "100%",
+    overflow: "auto",
+    backgroundColor: "var(--bg-medium)",
+    borderRadius: "8px",
+    boxShadow: "var(--shadow-soft)",
+    border: "var(--border-subtle)",
+    color: "var(--text-primary)",
+    fontFamily: "var(--main-font)",
+    fontSize: "1rem",
+    lineHeight: "1.6",
+    "&::-webkit-scrollbar": {
+        width: "8px",
+    },
+    "&::-webkit-scrollbar-track": {
+        background: "var(--bg-dark)",
+        borderRadius: "10px",
+    },
+    "&::-webkit-scrollbar-thumb": {
+        background: "var(--accent-green)",
+        borderRadius: "10px",
+        border: "2px solid var(--bg-dark)",
+    },
+
+    "@media (max-width: 600px)": {
+        gridArea: "auto",
+        height: "auto",
+    },
 }));
 
-export const DescGrid = styled('div')(() => ({
-    gridArea: '1 / 2 / 3 / 5',
-    padding: '10px',
-    height: '100%',
-    overflow: 'auto'
-    // border: '1px solid'
+export const GrafGrid = styled("div")(() => ({
+    gridArea: "3 / 1 / 5 / 5",
+    padding: "20px",
+    backgroundColor: "var(--bg-medium)",
+    borderRadius: "8px",
+    boxShadow: "var(--shadow-soft)",
+    border: "var(--border-subtle)",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+
+    "@media (max-width: 600px)": {
+        gridArea: "auto",
+        height: "300px",
+    },
 }));
 
-export const ProgramGrid = styled('div')(() => ({
-    gridArea: '5 / 1 / 6 / 5',
-    padding: '10px',
-    overflow: 'auto',
-    // border: '1px solid'
+export const ProgramGrid = styled("div")(() => ({
+    gridArea: "5 / 1 / 6 / 5",
+    padding: "20px",
+    overflow: "auto",
+    backgroundColor: "var(--bg-medium)",
+    borderRadius: "8px",
+    boxShadow: "var(--shadow-soft)",
+    border: "var(--border-subtle)",
+    color: "var(--text-primary)",
+    fontFamily: "var(--main-font)",
+    fontSize: "1rem",
+    lineHeight: "1.6",
+    "&::-webkit-scrollbar": {
+        width: "8px",
+    },
+    "&::-webkit-scrollbar-track": {
+        background: "var(--bg-dark)",
+        borderRadius: "10px",
+    },
+    "&::-webkit-scrollbar-thumb": {
+        background: "var(--accent-green)",
+        borderRadius: "10px",
+        border: "2px solid var(--bg-dark)",
+    },
+
+    "@media (max-width: 600px)": {
+        gridArea: "auto",
+        height: "auto",
+    },
 }));
 
-export const ListItemGrid = styled('div')(() => ({
-    gridArea: '1 / 5 / 6 / 7',
-    // border: '1px solid',
-    overflow: 'auto',
-    height: 'inherit',
-    '&::-webkit-scrollbar': {
-        display: 'none'
-    }
+export const ListItemGrid = styled("div")(() => ({
+    gridArea: "1 / 5 / 6 / 7",
+    backgroundColor: "var(--bg-medium)",
+    borderRadius: "8px",
+    boxShadow: "var(--shadow-soft)",
+    border: "var(--border-subtle)",
+    overflowY: "auto",
+    height: "inherit",
+    padding: "15px",
+    "&::-webkit-scrollbar": {
+        width: "8px",
+    },
+    "&::-webkit-scrollbar-track": {
+        background: "var(--bg-dark)",
+        borderRadius: "10px",
+    },
+    "&::-webkit-scrollbar-thumb": {
+        background: "var(--accent-green)",
+        borderRadius: "10px",
+        border: "2px solid var(--bg-dark)",
+    },
+
+    "@media (max-width: 600px)": {
+        gridArea: "auto",
+        height: "auto",
+    },
 }));
 
-export const TitleCategory = styled('span')(() => ({
-    fontSize: '20px',
-    textTransform: 'uppercase',
+export const TitleCategory = styled("span")(() => ({
+    fontSize: "22px",
+    textTransform: "uppercase",
+    fontWeight: 700,
+    marginRight: "15px",
+    color: "var(--accent-green)",
+    fontFamily: "var(--header-font)",
+}));
+
+export const DescCategory = styled("span")(() => ({
+    fontSize: "18px",
+    textTransform: "initial",
+    fontWeight: 400,
+    marginRight: "10px",
+    color: "var(--text-secondary)",
+}));
+
+export const CountryCategory = styled("span")(() => ({
+    fontSize: "22px",
+    textTransform: "uppercase",
+    fontWeight: 700,
+    marginRight: "15px",
+    color: "var(--accent-green)",
+    fontFamily: "var(--header-font)",
+}));
+
+export const ProductInfo = styled("span")(() => ({
+    fontSize: "15px",
+    fontWeight: 500,
+    color: "var(--text-primary)",
+}));
+
+export const InfoDetails = styled("span")(() => ({
+    fontSize: "17px",
+    textTransform: "uppercase",
     fontWeight: 600,
-    marginRight: '10px',
-    color: "#3d4b93d9"
+    marginRight: "10px",
+    color: "var(--accent-green)",
 }));
 
-export const DescCategory = styled('span')(() => ({
-    fontSize: '20px',
-    textTransform: 'uppercase',
+export const PriceTitle = styled("span")(() => ({
+    fontSize: "15px",
+    textTransform: "initial",
     fontWeight: 600,
-    marginRight: '10px',
-    color: "#3d4b93d9"
+    marginRight: "10px",
+    color: "var(--text-secondary)",
+    marginBottom: "5px",
 }));
 
-export const CountryCategory = styled('span')(() => ({
-    fontSize: '20px',
-    textTransform: 'uppercase',
-    fontWeight: 600,
-    marginRight: '10px',
-    color: "#3d4b93d9"
+export const BoisterousStringWrap = styled("span")(() => ({
+    display: "flex",
+    width: "100%",
+    overflowX: "hidden",
+    backgroundColor: "var(--bg-light)",
+    borderRadius: "5px",
+    padding: "5px 10px",
+    border: "var(--border-subtle)",
 }));
 
-
-export const ProductInfo = styled('span')(() => ({
-    fontSize: '14px',
-    fontWeight: 600,
-}));
-
-export const InfoDetails = styled('span')(() => ({
-    fontSize: '16px',
-    textTransform: 'uppercase',
-    fontWeight: 600,
-    marginRight: '10px',
-    color: "#3d4b93d9"
-}));
-
-export const PriceTitle = styled('span')(() => ({
-    fontSize: '14px',
-    textTransform: 'initial',
-    fontWeight: 600,
-    marginRight: '10px',
-    color: "#3d4b93d9",
-    marginBottom: '3px'
-}));
-
-
-export const BoisterousStringWrap = styled('span')(() => ({
-    display: 'flex',
-    width: '100%',
-    overflowX: 'hidden'
-}));
-
-export const BoisterousStringAnimate = styled('span')(() => ({
+export const BoisterousStringAnimate = styled("span")(() => ({
     "@keyframes text": {
         "0%": {
-            transform: "translate(0, 0)"
+            transform: "translate(0, 0)",
         },
         "100%": {
-          transform: "translate(-1600%, 0)"
-        }
-      },
-      width: "100%",
-      whiteSpace: 'nowrap',
-      animation: "text 200s infinite linear",
-      color: '#ff7575',
-      marginLeft: '10px'
+            transform: "translate(-1600%, 0)",
+        },
+    },
+    width: "100%",
+    whiteSpace: "nowrap",
+    animation: "text 200s infinite linear",
+    color: "var(--accent-green)",
+    marginLeft: "10px",
+    fontSize: "1.1rem",
+    fontWeight: "600",
 }));
-
-
-

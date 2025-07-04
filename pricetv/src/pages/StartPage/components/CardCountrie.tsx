@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { fontSize, styled } from "@mui/system";
+import { styled } from "@mui/system";
 import { useNavigate } from "react-router-dom";
 import { getShift } from "../../../store/reducers/getProgrammListSlice";
 import { useAppDispatch } from "../../../hooks/redux";
@@ -40,11 +40,5 @@ const WrapperCard = styled("div")(({ theme }) => ({
     alignItems: "center",
     cursor: "pointer",
     fontSize: "1vw",
-    "@media (max-width: 920px)": {
-        fontSize: "1.2vw",
-    },
-    "@media (max-width: 768px)": {
-        fontSize: "1.6vw",
-    },
 }));
 

@@ -1,24 +1,16 @@
-//react
 import { useEffect, useState } from "react";
 
-//redux
 import { useAppSelector } from "../../../hooks/redux";
 
-//material-ui
 import { Grid } from "@mui/material";
+import { styled } from "@mui/system";
 
-//utels
 import { funSliced } from "../../../utils/sliced";
 
-//style
 import {
     CountryCategory,
-    Data,
     DescCategory,
-    IndicateBlockItem,
-    IndicateBlockWraper,
     InfoDetails,
-    PriceIncreaseDate,
     PriceTitle,
     ProductInfo,
     TitleCategory,
@@ -47,10 +39,8 @@ function calculateObservationPeriod(startDateStr: string, endDateStr: string) {
     const startDate = new Date(startDateStr);
     const endDate = new Date(endDateStr);
 
-    // Получаем разницу в миллисекундах между датами
     const timeDiff = endDate.getTime() - startDate.getTime();
 
-    // Вычисляем количество дней и округляем до целого числа
     const diffDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
 
     return diffDays;
@@ -71,7 +61,6 @@ export const ProductInfoComponet = ({
 
     const currency = useGetCurrencyByCode(countries);
 
-    //   (0 = green), (1 = blue), (2 = red);
     useEffect(() => {
         if (!programmList.length) return;
 
@@ -84,76 +73,54 @@ export const ProductInfoComponet = ({
         ) {
             setElement(null);
         } else if (percentagePriceIncrease < 10) {
-            setElement(0); // зеленый
+            setElement(0);
         } else if (percentagePriceIncrease < 30) {
-            setElement(1); // синий
+            setElement(1);
         } else {
-            setElement(2); // красный
+            setElement(2);
         }
     }, [activeIndex, programmList]);
 
     if (programm === null) return <></>;
     return (
-        <Grid
-            container
-            direction="row"
-            justifyContent="flex-start"
-            alignItems="center"
-            flexWrap="nowrap"
-            style={{ height: "inherit" }}
-        >
+        <ProductInfoWrapper>
             <Grid
                 container
-                direction="column"
+                direction="row"
                 justifyContent="flex-start"
-                alignItems="flex-start"
-                maxHeight="-webkit-fill-available"
+                alignItems="center"
             >
-                <Grid
-                    container
-                    direction="row"
-                    justifyContent="flex-start"
-                    alignItems="center"
-                >
-                    <CountryCategory>Country:</CountryCategory>{" "}
-                    <span>{programm && programm["en_name"]}</span>
-                    <img
-                        src={programm && programm["img_url"]}
-                        alt="flag"
-                        width="40px"
-                        height="40px"
-                        style={{ marginLeft: "20px" }}
-                    />
-                </Grid>
-                <Grid
-                    container
-                    direction="row"
-                    justifyContent="flex-start"
-                    alignItems="center"
-                >
-                    <TitleCategory>category:</TitleCategory>{" "}
-                    <ProductInfo>{programItem["short_category"]}</ProductInfo>
-                </Grid>
-                <Grid>
-                    <DescCategory>description:</DescCategory>
+                <CountryCategory>Country:</CountryCategory>{" "}
+                <CountryName>{programm && programm["en_name"]}</CountryName>
+                <FlagImage src={programm && programm["img_url"]} alt="flag" />
+            </Grid>
+            <Grid
+                container
+                direction="row"
+                justifyContent="flex-start"
+                alignItems="center"
+            >
+                <TitleCategory>category:</TitleCategory>{" "}
+                <ProductInfo>{programItem["short_category"]}</ProductInfo>
+            </Grid>
+            <DescriptionContainer>
+                <DescCategory>description:</DescCategory>
+                <DescriptionText>
                     {funSliced(programItem["description"], 230)}
-                    <hr style={{ width: "100%" }} />
-                </Grid>
+                </DescriptionText>
+                <ProductSeparator />
+            </DescriptionContainer>
+            <InflationDetailsContainer>
+                <InfoDetails>Inflation details:</InfoDetails>
                 <Grid
                     container
                     direction="column"
-                    justifyContent="center"
-                    alignItems="center"
+                    justifyContent="flex-start"
+                    alignItems="flex-start"
                 >
-                    <InfoDetails>Inflation details:</InfoDetails>
-                    <Grid
-                        container
-                        direction="column"
-                        justifyContent="flex-start"
-                        alignItems="flex-start"
-                    >
-                        <PriceTitle>
-                            Price increase:{" "}
+                    <PriceDetail>
+                        <PriceTitle>Price increase: </PriceTitle>
+                        <PriceValue>
                             {programItem["percentage_price_increase"].toFixed(
                                 2
                             )}
@@ -164,84 +131,193 @@ export const ProductInfoComponet = ({
                             {programItem["price_increase"].toFixed(2)}{" "}
                             {currency}), from {priceStartAndEnd.startprice} to{" "}
                             {priceStartAndEnd.endprice} {currency}
-                        </PriceTitle>
-                        <PriceTitle>
-                            Price increase per day:{" "}
+                        </PriceValue>
+                    </PriceDetail>
+                    <PriceDetail>
+                        <PriceTitle>Price increase per day: </PriceTitle>
+                        <PriceValue>
                             {programItem["price_increase_per_day"].toFixed(4)}{" "}
                             {currency}
-                        </PriceTitle>
-                        <PriceTitle>
-                            Price increase rate: {programItem["rate"]} from{" "}
+                        </PriceValue>
+                    </PriceDetail>
+                    <PriceDetail>
+                        <PriceTitle>Price increase rate: </PriceTitle>
+                        <PriceValue>
+                            {programItem["rate"]} from{" "}
                             {programm["count_product"] !== null &&
                                 programm["count_product"]}
-                        </PriceTitle>
+                        </PriceValue>
+                    </PriceDetail>
+                    <PriceDetail>
                         <PriceTitle>
                             Price Observation period in days:{" "}
+                        </PriceTitle>
+                        <PriceValue>
                             {calculateObservationPeriod(
                                 priceStartAndEndDate.startPriceData,
                                 priceStartAndEndDate.endPriceData
                             )}
-                        </PriceTitle>
-                        <PriceIncreaseDate>
-                            Highest price increase date:{" "}
-                            <Data>
-                                {programItem["highest_price_increase_date"]}
-                            </Data>
-                        </PriceIncreaseDate>
-                        <hr style={{ width: "100%" }} />
+                        </PriceValue>
+                    </PriceDetail>
+                    <PriceDetail>
+                        <PriceTitle>Highest price increase date: </PriceTitle>
+                        <PriceValue>
+                            {programItem["highest_price_increase_date"]}
+                        </PriceValue>
+                    </PriceDetail>
+                    <ProductSeparator />
+                    <Grid
+                        container
+                        direction="row"
+                        justifyContent="space-between"
+                        alignItems="center"
+                        wrap="nowrap"
+                        sx={{ width: "100%", marginTop: "10px" }}
+                    >
                         <Grid
                             container
-                            direction="row"
+                            direction="column"
                             justifyContent="space-between"
-                            alignItems="center"
-                            wrap="nowrap"
-                            style={{ width: "100%" }}
+                            alignItems="flex-start"
+                            sx={{ width: "50%" }}
                         >
-                            <Grid
-                                container
-                                direction="column"
-                                justifyContent="space-between"
-                                alignItems="center"
-                                style={{ width: "50%" }}
-                            >
+                            <PricePeriod>
+                                price from:{" "}
                                 <span>
-                                    price from:{" "}
                                     {priceStartAndEndDate.startPriceData}
                                 </span>
-                                <span>
-                                    price up to:{" "}
-                                    {priceStartAndEndDate.endPriceData}
-                                </span>
-                            </Grid>
-                            <Grid
-                                container
-                                direction="row"
-                                justifyContent="flex-start"
-                                alignItems="center"
-                                style={{ padding: "10px" }}
-                            >
-                                {ifoArr?.map((i, index) => (
-                                    <IndicateBlockWraper key={index}>
-                                        <IndicateBlockItem
-                                            bg={i.color}
-                                            animate={
-                                                element === i.id && "boxShadow"
-                                            }
-                                            effect={
-                                                element === i.id && "animation"
-                                            }
-                                            isActive={element === i.id}
-                                        >
-                                            <span>{i.title}</span>
-                                        </IndicateBlockItem>
-                                    </IndicateBlockWraper>
-                                ))}
-                            </Grid>
+                            </PricePeriod>
+                            <PricePeriod>
+                                price up to:{" "}
+                                <span>{priceStartAndEndDate.endPriceData}</span>
+                            </PricePeriod>
                         </Grid>
+                        <IndicateBlockWraper>
+                            {ifoArr?.map((i, index) => (
+                                <IndicateBlockItem
+                                    key={index}
+                                    bg={i.color}
+                                    isActive={element === i.id}
+                                >
+                                    <span>{i.title}</span>
+                                </IndicateBlockItem>
+                            ))}
+                        </IndicateBlockWraper>
                     </Grid>
                 </Grid>
-            </Grid>
-        </Grid>
+            </InflationDetailsContainer>
+        </ProductInfoWrapper>
     );
 };
 
+const ProductInfoWrapper = styled("div")(() => ({
+    height: "inherit",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
+    padding: "10px",
+    color: "var(--text-primary)",
+    fontFamily: "var(--main-font)",
+    fontSize: "1rem",
+    lineHeight: "1.6",
+}));
+
+const CountryName = styled("span")(() => ({
+    fontSize: "16px",
+    fontWeight: 600,
+    color: "var(--text-primary)",
+    marginRight: "10px",
+}));
+
+const FlagImage = styled("img")(() => ({
+    width: "30px",
+    height: "30px",
+    borderRadius: "4px",
+    marginLeft: "10px",
+}));
+
+const DescriptionContainer = styled("div")(() => ({
+    marginTop: "15px",
+    marginBottom: "15px",
+    width: "100%",
+}));
+
+const DescriptionText = styled("span")(() => ({
+    fontSize: "1rem",
+    color: "var(--text-secondary)",
+    display: "block",
+    marginTop: "5px",
+}));
+
+const ProductSeparator = styled("hr")(() => ({
+    width: "100%",
+    margin: "15px 0",
+    border: "none",
+    borderTop: "1px solid var(--border-subtle)",
+}));
+
+const InflationDetailsContainer = styled("div")(() => ({
+    width: "100%",
+    marginTop: "15px",
+}));
+
+const PriceDetail = styled("div")(() => ({
+    display: "flex",
+    alignItems: "baseline",
+    marginBottom: "8px",
+    width: "100%",
+}));
+
+const PriceValue = styled("span")(() => ({
+    fontSize: "1.1rem",
+    fontWeight: 500,
+    color: "var(--text-primary)",
+}));
+
+const PricePeriod = styled("span")(() => ({
+    fontSize: "0.95rem",
+    color: "var(--text-secondary)",
+    marginBottom: "5px",
+    span: {
+        fontWeight: 600,
+        color: "var(--text-primary)",
+    },
+}));
+
+interface IndicateBlockItemProps {
+    bg: string;
+    isActive: boolean;
+}
+
+const IndicateBlockWraper = styled(Grid)(() => ({
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    alignItems: "center",
+    gap: "10px",
+    padding: "10px",
+    borderRadius: "8px",
+    backgroundColor: "var(--bg-light)",
+    border: "var(--border-subtle)",
+    boxShadow: "var(--shadow-soft)",
+}));
+
+const IndicateBlockItem = styled("div")<IndicateBlockItemProps>(
+    ({ bg, isActive }) => ({
+        width: "50px",
+        height: "30px",
+        borderRadius: "5px",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        fontSize: "0.8rem",
+        fontWeight: 600,
+        color: "#fff",
+        backgroundColor:
+            bg === "green" ? "#00e676" : bg === "blue" ? "#00b0ff" : "#ff1744",
+        border: isActive ? "2px solid var(--text-primary)" : "none",
+        boxShadow: isActive ? "0 0 10px rgba(255, 255, 255, 0.5)" : "none",
+        transition: "all 0.3s ease",
+    })
+);

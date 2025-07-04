@@ -1,16 +1,12 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-//react
-import { Dispatch, FC, SetStateAction, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 
-// react-router-dom
 import { useLocation } from "react-router-dom";
 
-//redux
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
 import { IProductItem } from "../../../types/types";
 
-//material-ui
 import { Grid } from "@mui/material";
+import { styled } from "@mui/system";
 import { getProgramsTop } from "../../../store/actions/getProductsTopSlice";
 
 interface IListProduct {
@@ -32,15 +28,15 @@ export const ListProduct: FC<IListProduct> = ({ activeIndex }) => {
         const activeEl = document.getElementById(
             programmList[activeIndex]?.sku
         );
-        activeEl?.scrollIntoView({ behavior: "smooth" });
+        activeEl?.scrollIntoView({ behavior: "smooth", block: "center" });
 
         const percentagePriceIncrease =
             programmList[activeIndex]?.percentage_price_increase;
 
         if (percentagePriceIncrease < 10) {
-            setStateColor("green");
+            setStateColor("var(--accent-green)");
         } else if (percentagePriceIncrease < 30) {
-            setStateColor("blue");
+            setStateColor("var(--text-secondary)");
         } else {
             setStateColor("red");
         }
@@ -60,18 +56,11 @@ export const ListProduct: FC<IListProduct> = ({ activeIndex }) => {
 
     const renderList = () => {
         return programmList.map((item: IProductItem) => (
-            <div
+            <ProductItemWrapper
                 key={item.sku}
                 id={item.sku}
-                style={
-                    item.sku === programmList[activeIndex].sku
-                        ? {
-                              background: stateColor,
-                              marginBottom: "6px",
-                              padding: "0 0 0 2px",
-                          }
-                        : { marginBottom: "6px" }
-                }
+                isActive={item.sku === programmList[activeIndex].sku}
+                activeColor={stateColor}
             >
                 <Grid
                     container
@@ -81,31 +70,80 @@ export const ListProduct: FC<IListProduct> = ({ activeIndex }) => {
                     flexWrap="nowrap"
                 >
                     {item.image && (
-                        <img
-                            src={item.image}
-                            alt={item.name}
-                            width="50px"
-                            height="50px"
-                            style={{ borderRadius: "5px", marginRight: "5px" }}
-                        />
+                        <ProductImage src={item.image} alt={item.name} />
                     )}
-                    <div>
-                        <div>
+                    <ProductDetails>
+                        <ProductCategory>
                             category: <span>{item.category}</span>
-                        </div>
-                        <div>
-                            name:{" "}
-                            <span style={{ fontSize: "12px", fontWeight: 800 }}>
-                                {item.name}
-                            </span>
-                        </div>
-                    </div>
+                        </ProductCategory>
+                        <ProductName>
+                            name: <span>{item.name}</span>
+                        </ProductName>
+                    </ProductDetails>
                 </Grid>
 
-                <hr style={{ margin: "5px 0 0 0" }} />
-            </div>
+                <ProductSeparator />
+            </ProductItemWrapper>
         ));
     };
 
     return <>{renderList()}</>;
 };
+
+interface ProductItemWrapperProps {
+    isActive: boolean;
+    activeColor: string;
+}
+
+const ProductItemWrapper = styled("div")<ProductItemWrapperProps>(
+    ({ isActive, activeColor }) => ({
+        marginBottom: "6px",
+        padding: "10px",
+        borderRadius: "8px",
+        backgroundColor: isActive ? "rgba(0, 230, 118, 0.1)" : "transparent",
+        border: isActive ? `1px solid ${activeColor}` : "1px solid transparent",
+        transition: "background-color 0.3s ease, border-color 0.3s ease",
+        color: "var(--text-primary)",
+        fontFamily: "var(--main-font)",
+    })
+);
+
+const ProductImage = styled("img")(() => ({
+    width: "60px",
+    height: "60px",
+    borderRadius: "8px",
+    marginRight: "10px",
+    objectFit: "cover",
+}));
+
+const ProductDetails = styled("div")(() => ({
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+}));
+
+const ProductCategory = styled("div")(() => ({
+    fontSize: "0.9rem",
+    color: "var(--text-secondary)",
+    span: {
+        color: "var(--text-primary)",
+        fontWeight: 500,
+    },
+}));
+
+const ProductName = styled("div")(() => ({
+    fontSize: "1rem",
+    fontWeight: 600,
+    color: "var(--text-primary)",
+    span: {
+        fontSize: "1rem",
+        fontWeight: 700,
+        color: "var(--accent-green)",
+    },
+}));
+
+const ProductSeparator = styled("hr")(() => ({
+    margin: "10px 0 0 0",
+    border: "none",
+    borderTop: "1px solid var(--border-subtle)",
+}));

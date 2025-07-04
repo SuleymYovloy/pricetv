@@ -76,7 +76,7 @@ const StatValue = styled("div")({
 
 const StatLabel = styled("div")({
     color: "var(--text-secondary)",
-    fontSize: "1rem",
+    fontSize: "0.8rem",
     fontWeight: "500",
     textTransform: "uppercase",
     letterSpacing: "1.2px",

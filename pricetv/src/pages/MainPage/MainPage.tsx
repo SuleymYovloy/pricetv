@@ -1,10 +1,6 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-
-// react
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useLocation } from "react-router-dom";
 
-//redux
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { getProgramm } from "../../store/actions/getProgrammSlice";
 import {
@@ -12,12 +8,10 @@ import {
     nextPageProgrammList,
 } from "../../store/actions/getProgrammList";
 
-//components
 import { Chart } from "../../components/Chart/Chart";
 import { ListProduct } from "./components/ListProduct";
 import { ProductInfoComponet } from "./components/ProductInfoComponet";
 
-//style
 import {
     BoisterousStringAnimate,
     BoisterousStringWrap,
@@ -256,7 +250,7 @@ export const Main = () => {
                             sx={{
                                 display: "flex",
                                 width: "50%",
-                                // overflowY: 'auto',
+
                                 overflow: "visible",
                                 paddingBottom: "7px",
                                 "&::-webkit-scrollbar": {
@@ -293,4 +287,3 @@ export const Main = () => {
         </Parent>
     );
 };
-
