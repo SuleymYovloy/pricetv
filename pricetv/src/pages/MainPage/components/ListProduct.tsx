@@ -109,4 +109,3 @@ export const ListProduct: FC<IListProduct> = ({ activeIndex }) => {
 
     return <>{renderList()}</>;
 };
-

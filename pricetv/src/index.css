@@ -1,164 +1,148 @@
-@font-face {
-    font-family: "Inter";
-    font-weight: 100;
-    src: local("Inter"), url(./fonts/Inter.ttf) format("truetype");
+:root {
+    --main-font: "Inter", sans-serif;
+    --header-font: "Inter", sans-serif;
+    --bg-dark: #0a0a0a;
+    --bg-medium: #1a1a1a;
+    --bg-light: #2a2a2a;
+    --text-primary: #f0f0f0;
+    --text-secondary: #c0c0c0;
+    --accent-green: #00e676;
+    --border-subtle: 1px solid rgba(255, 255, 255, 0.05);
+    --shadow-soft: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
-@font-face {
-    font-family: "Inter";
-    font-weight: 200;
-    src: local("Inter"), url(./fonts/Inter.ttf) format("truetype");
-}
-
-@font-face {
-    font-family: "Inter";
-    font-weight: 300;
-    src: local("Inter"), url(./fonts/Inter.ttf) format("truetype");
-}
-
-@font-face {
-    font-family: "Inter";
-    font-weight: 400;
-    src: local("Inter"), url(./fonts/Inter.ttf) format("truetype");
-}
-
-@font-face {
-    font-family: "Inter";
-    font-weight: 500;
-    src: local("Inter"), url(./fonts/Inter.ttf) format("truetype");
-}
-
-@font-face {
-    font-family: "Inter";
-    font-weight: 600;
-    src: local("Inter"), url(./fonts/Inter.ttf) format("truetype");
-}
-
-@font-face {
-    font-family: "Inter";
-    font-weight: 700;
-    src: local("Inter"), url(./fonts/Inter.ttf) format("truetype");
-}
-
-@font-face {
-    font-family: "Inter";
-    font-weight: 800;
-    src: local("Inter"), url(./fonts/Inter.ttf) format("truetype");
-}
-
-@font-face {
-    font-family: "Inter";
-    font-weight: 900;
-    src: local("Inter"), url(./fonts/Inter.ttf) format("truetype");
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    color: aliceblue;
-    background-color: #4b4c50;
-    justify-content: center;
+    font-family: var(--main-font);
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    height: 100vh;
-    margin: 0;
+    padding: 0;
 }
 
 header {
-    background-color: #4b4c50;
-    padding-top: 40px;
-}
-
-.text-content {
-    margin-left: 2%;
-    max-width: min-content;
-    margin-top: 2%;
-    text-shadow: 2px 2px 5px #000;
-}
-
-header h1 {
-    margin: 0;
-    color: #ddd;
-    font-family: "Palatino Linotype";
-    text-align: left;
-    line-height: 1em;
-    font-size: calc(3rem + 1vw);
-}
-
-header h1 .first-word {
-    display: block;
-    margin: 0;
-    line-height: 0.6;
-}
-
-header p {
-    font-family: "Palatino Linotype";
-    line-height: 1.2;
-    text-align: left;
-    font-size: calc(1rem + 0.5vw);
-}
-
-header hr {
-    border: none;
-    background: linear-gradient(to bottom, #000 30%, #262b31 50%, #262b31 70%);
-    height: 3px;
+    background-color: var(--bg-medium);
+    color: var(--text-primary);
+    padding: 50px 20px;
     width: 100%;
-    margin-bottom: revert;
-}
-
-header hr.short {
-    margin: auto;
+    box-shadow: var(--shadow-soft);
+    border-bottom: var(--border-subtle);
+    text-align: center;
 }
 
 .header-content {
-    display: flex;
-    justify-content: space-between;
-    box-sizing: border-box;
-    flex-direction: row;
-    background-image: url("https://theinflation.tv/media/header_background.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.text-content h1 {
+    font-family: var(--header-font);
+    font-size: 3.8rem;
+    font-weight: 900;
+    margin-bottom: 12px;
+    letter-spacing: -0.04em;
+    color: #ffffff;
+    text-shadow: 0 0 15px rgba(0, 230, 118, 0.2);
+}
+
+.text-content .header-logo {
+    display: inline;
+}
+
+.text-content h1 span:last-child {
+    color: var(--accent-green);
+}
+
+.text-content .short {
+    width: 120px;
+    height: 3px;
+    background: var(--accent-green);
+    margin: 10px auto 25px auto;
+    border-radius: 2px;
+    opacity: 0.8;
+}
+
+.text-content p {
+    font-size: 1.2rem;
+    line-height: 1.7;
+    max-width: 750px;
+    margin: 0 auto;
+    color: var(--text-secondary);
+    font-weight: 300;
+}
+
+#root {
+    flex-grow: 1;
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
 }
 
 footer {
+    background-color: var(--bg-medium);
+    color: var(--text-secondary);
+    padding: 20px;
     text-align: center;
-    bottom: 0;
-    position: relative;
+    font-size: 0.85rem;
+    width: 100%;
+    box-shadow: var(--shadow-soft);
+    border-top: var(--border-subtle);
 }
 
 .footer-container {
-    background-color: #2b3036;
-    border-radius: 10px;
-    margin-top: 20px;
     display: flex;
-    align-items: center;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    font-size: 14px;
-    word-wrap: break-word;
-}
-
-footer p {
-    color: #ddd;
-    text-align: left;
-    margin: 10px 10px;
-}
-
-footer .left {
-    background-color: #3e383a;
-    /* height: 100%; */
-    flex-grow: 1;
-}
-
-footer .right {
-    background-color: #2b3036;
-    height: 100%;
-    flex-grow: 1;
-    width: -webkit-fill-available;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .footer-item {
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    padding: 5px 0;
 }
 
+.footer-item p {
+    opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 30px 15px;
+    }
+
+    .text-content h1 {
+        font-size: 3rem;
+    }
+
+    .text-content p {
+        font-size: 1.1rem;
+    }
+
+    .text-content .short {
+        width: 90px;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .text-content h1 {
+        font-size: 2.5rem;
+    }
+    .text-content p {
+        font-size: 1rem;
+    }
+}
