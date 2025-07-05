@@ -1,21 +1,20 @@
-import { styled } from "@mui/system";
+import { display, height, styled } from "@mui/system";
 
 export const Parent = styled("div")(() => ({
     display: "grid",
     gridTemplateColumns: "repeat(6, 1fr)",
-    gridTemplateRows: "repeat(5, 1fr)",
+    gridTemplateRows: "repeat(4, 2fr)",
     gridColumnGap: " 15px",
     gridRowGap: "15px",
-    height: "97vh",
+    height: "130vh",
     padding: "20px",
     backgroundColor: "var(--bg-dark)",
     color: "var(--text-primary)",
 
-    "@media (max-width: 600px)": {
-        gridTemplateColumns: "1fr",
-        gridTemplateRows: "auto",
-        height: "auto",
-        padding: "10px",
+    "@media (max-width: 1020px)": {
+        display: "flex",
+        flexDirection: "column",
+        height: "100%",
     },
 }));
 
@@ -30,6 +29,10 @@ export const ImgGrid = styled("div")(() => ({
     justifyContent: "center",
     alignItems: "center",
 
+    "@media (max-width: 1020px)": {
+        gridArea: "auto",
+        height: "200px",
+    },
     "@media (max-width: 600px)": {
         gridArea: "auto",
         height: "200px",
@@ -62,6 +65,10 @@ export const DescGrid = styled("div")(() => ({
         border: "2px solid var(--bg-dark)",
     },
 
+    "@media (max-width: 1020px)": {
+        gridArea: "auto",
+        height: "auto",
+    },
     "@media (max-width: 600px)": {
         gridArea: "auto",
         height: "auto",
@@ -69,7 +76,7 @@ export const DescGrid = styled("div")(() => ({
 }));
 
 export const GrafGrid = styled("div")(() => ({
-    gridArea: "3 / 1 / 5 / 5",
+    gridArea: "3 / 1 / 4 / 5",
     padding: "20px",
     backgroundColor: "var(--bg-medium)",
     borderRadius: "8px",
@@ -79,6 +86,10 @@ export const GrafGrid = styled("div")(() => ({
     justifyContent: "center",
     alignItems: "center",
 
+    "@media (max-width: 1020px)": {
+        gridArea: "auto",
+        height: "300px",
+    },
     "@media (max-width: 600px)": {
         gridArea: "auto",
         height: "300px",
@@ -86,7 +97,7 @@ export const GrafGrid = styled("div")(() => ({
 }));
 
 export const ProgramGrid = styled("div")(() => ({
-    gridArea: "5 / 1 / 6 / 5",
+    gridArea: "4 / 1 / 5 / 5",
     padding: "20px",
     overflow: "auto",
     backgroundColor: "var(--bg-medium)",
@@ -110,6 +121,10 @@ export const ProgramGrid = styled("div")(() => ({
         border: "2px solid var(--bg-dark)",
     },
 
+    "@media (max-width: 1020px)": {
+        gridArea: "auto",
+        height: "auto",
+    },
     "@media (max-width: 600px)": {
         gridArea: "auto",
         height: "auto",
@@ -123,7 +138,6 @@ export const ListItemGrid = styled("div")(() => ({
     boxShadow: "var(--shadow-soft)",
     border: "var(--border-subtle)",
     overflowY: "auto",
-    height: "inherit",
     padding: "15px",
     "&::-webkit-scrollbar": {
         width: "8px",
@@ -138,6 +152,10 @@ export const ListItemGrid = styled("div")(() => ({
         border: "2px solid var(--bg-dark)",
     },
 
+    "@media (max-width: 1020px)": {
+        gridArea: "auto",
+        height: "auto",
+    },
     "@media (max-width: 600px)": {
         gridArea: "auto",
         height: "auto",

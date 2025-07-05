@@ -26,12 +26,22 @@ export const ItemCardNavCountry: FC<IItemCardNavCountry> = ({
             justifyContent="space-around"
             alignItems="center"
             style={{
-                width: "70px",
-                height: "50px",
-                border: "1px solid #dab5b5f0",
-                marginRight: "10px",
-                borderRadius: "2px",
+                marginRight: "8px",
+                border: "1px solid rgba(14, 12, 13, 0.55)",
+                borderRadius: "5px",
                 cursor: "pointer",
+                backgroundColor: "var(--bg-light)",
+                padding: "8px 8px",
+                boxShadow: "var(--shadow-soft)",
+            }}
+            sx={{
+                // Стили по умолчанию
+                transition:
+                    "transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out",
+                "&:hover": {
+                    transform: "translateY(-4px)",
+                    boxShadow: "0 6px 20px rgba(0, 0, 0, 0.5)",
+                },
             }}
             flexWrap="nowrap"
             onClick={() => onClick(countryCode)}
@@ -43,7 +53,7 @@ export const ItemCardNavCountry: FC<IItemCardNavCountry> = ({
             />
             <span
                 style={{
-                    backgroundColor: "#a4e087c9",
+                    color: "#00E676",
                     display: "flex",
                     justifyContent: "center",
                     fontSize: "10px",

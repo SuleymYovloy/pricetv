@@ -128,7 +128,6 @@ export const StartPage = () => {
                     columns={{ xs: 4, sm: 8, md: 12 }}
                 >
                     {countries?.map((countrie, index) => {
-                        console.log("🚀 =====> countrie:", countrie);
                         return (
                             <Grid item xs={2} sm={4} md={4} key={index}>
                                 <Item
@@ -202,4 +201,3 @@ const Wrapper = styled("div")(({ theme }) => ({
         marginBottom: "40px",
     },
 }));
-

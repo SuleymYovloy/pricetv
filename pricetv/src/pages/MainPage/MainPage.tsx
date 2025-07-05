@@ -11,6 +11,7 @@ import {
 import { Chart } from "../../components/Chart/Chart";
 import { ListProduct } from "./components/ListProduct";
 import { ProductInfoComponet } from "./components/ProductInfoComponet";
+import { Loading } from "../../components/Loading/Loading";
 
 import {
     BoisterousStringAnimate,
@@ -166,7 +167,7 @@ export const Main = () => {
         );
     }, [countriesTop]);
 
-    if (!programmList.length) return <>LOadiind</>;
+    if (!programmList.length) return <Loading />;
 
     return (
         <Parent>
@@ -238,7 +239,7 @@ export const Main = () => {
                     </Grid>
                     <Grid
                         container
-                        direction="row"
+                        direction="column"
                         justifyContent="flex-start"
                         alignItems="flex-start"
                         wrap="nowrap"

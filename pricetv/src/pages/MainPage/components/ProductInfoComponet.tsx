@@ -14,7 +14,7 @@ import {
     PriceTitle,
     ProductInfo,
     TitleCategory,
-} from "../StylesMain";
+} from "../../StylesMain";
 import { ICountry, IProductItem } from "../../../types/types";
 import { useGetCurrencyByCode } from "../../../hooks/useGetCurrencyByCode";
 
