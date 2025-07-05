@@ -105,6 +105,7 @@ const ProductItemWrapper = styled("div")<ProductItemWrapperProps>(
         transition: "background-color 0.3s ease, border-color 0.3s ease",
         color: "var(--text-primary)",
         fontFamily: "var(--main-font)",
+        lineHeight: "1.4",
     })
 );
 
@@ -139,6 +140,9 @@ const ProductName = styled("div")(() => ({
         fontSize: "1rem",
         fontWeight: 700,
         color: "var(--accent-green)",
+    },
+    "@media (max-width: 760px)": {
+        fontSize: "0.8rem",
     },
 }));
 

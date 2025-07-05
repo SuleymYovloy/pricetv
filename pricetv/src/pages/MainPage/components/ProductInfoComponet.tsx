@@ -221,6 +221,10 @@ const ProductInfoWrapper = styled("div")(() => ({
     fontFamily: "var(--main-font)",
     fontSize: "1rem",
     lineHeight: "1.6",
+
+    "@media (max-width: 760px)": {
+        fontSize: "0.8rem",
+    },
 }));
 
 const CountryName = styled("span")(() => ({
@@ -248,6 +252,10 @@ const DescriptionText = styled("span")(() => ({
     color: "var(--text-secondary)",
     display: "block",
     marginTop: "5px",
+
+    "@media (max-width: 760px)": {
+        fontSize: "0.8rem",
+    },
 }));
 
 const ProductSeparator = styled("hr")(() => ({

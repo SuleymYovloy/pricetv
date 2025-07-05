@@ -40,5 +40,16 @@ const WrapperCard = styled("div")(({ theme }) => ({
     alignItems: "center",
     cursor: "pointer",
     fontSize: "1vw",
-}));
 
+    "@media (max-width: 1160px)": {
+        fontSize: "1.2vw",
+    },
+
+    "@media (max-width: 960px)": {
+        fontSize: "1.2vw",
+    },
+
+    "@media (max-width: 760px)": {
+        fontSize: "1.6vw",
+    },
+}));

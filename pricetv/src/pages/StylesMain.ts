@@ -1,4 +1,4 @@
-import { display, height, styled } from "@mui/system";
+import { display, fontSize, height, styled } from "@mui/system";
 
 export const Parent = styled("div")(() => ({
     display: "grid",
@@ -128,6 +128,7 @@ export const ProgramGrid = styled("div")(() => ({
     "@media (max-width: 600px)": {
         gridArea: "auto",
         height: "auto",
+        fontSize: "0.8rem",
     },
 }));
 
@@ -169,6 +170,10 @@ export const TitleCategory = styled("span")(() => ({
     marginRight: "15px",
     color: "var(--accent-green)",
     fontFamily: "var(--header-font)",
+
+    "@media (max-width: 760px)": {
+        fontSize: "14px",
+    },
 }));
 
 export const DescCategory = styled("span")(() => ({
@@ -177,6 +182,9 @@ export const DescCategory = styled("span")(() => ({
     fontWeight: 400,
     marginRight: "10px",
     color: "var(--text-secondary)",
+    "@media (max-width: 760px)": {
+        fontSize: "15px",
+    },
 }));
 
 export const CountryCategory = styled("span")(() => ({
@@ -186,12 +194,20 @@ export const CountryCategory = styled("span")(() => ({
     marginRight: "15px",
     color: "var(--accent-green)",
     fontFamily: "var(--header-font)",
+
+    "@media (max-width: 760px)": {
+        fontSize: "14px",
+    },
 }));
 
 export const ProductInfo = styled("span")(() => ({
     fontSize: "15px",
     fontWeight: 500,
     color: "var(--text-primary)",
+
+    "@media (max-width: 760px)": {
+        fontSize: "13px",
+    },
 }));
 
 export const InfoDetails = styled("span")(() => ({
@@ -237,4 +253,10 @@ export const BoisterousStringAnimate = styled("span")(() => ({
     marginLeft: "10px",
     fontSize: "1.1rem",
     fontWeight: "600",
+
+    "@media (max-width: 760px)": {
+        gridArea: "auto",
+        height: "auto",
+        fontSize: "0.8rem",
+    },
 }));

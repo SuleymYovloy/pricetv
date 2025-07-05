@@ -26,6 +26,9 @@ const StatsContainer = styled("div")({
     flexWrap: "wrap",
     gap: "30px",
     border: "var(--border-subtle)",
+    "@media (max-width: 1200px)": {
+        width: "90%",
+    },
     "@media (max-width: 768px)": {
         padding: "20px",
         gap: "20px",
@@ -66,8 +69,14 @@ const StatValue = styled("div")({
     fontWeight: "700",
     marginBottom: "8px",
     fontFamily: "var(--header-font)",
+    "@media (max-width: 1200px)": {
+        fontSize: "1.5rem",
+    },
+    "@media (max-width: 960px)": {
+        fontSize: "1.5rem",
+    },
     "@media (max-width: 768px)": {
-        fontSize: "1.8rem",
+        fontSize: "1.5rem",
     },
     "@media (max-width: 480px)": {
         fontSize: "1.4rem",

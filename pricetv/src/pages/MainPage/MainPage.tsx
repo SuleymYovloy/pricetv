@@ -217,7 +217,11 @@ export const Main = () => {
                         <TitleFooter>
                             Schedule for today (ET time): {dateProgramm()}
                         </TitleFooter>
-                        <div style={{ display: "flex", width: "100%" }}>
+                        <Grid
+                            container
+                            className="runline"
+                            style={{ display: "flex", width: "100%" }}
+                        >
                             <TitleFooter
                                 style={{
                                     minWidth: "fit-content",
@@ -231,7 +235,7 @@ export const Main = () => {
                                     {boisterousStringAnimateRender}
                                 </BoisterousStringAnimate>
                             </BoisterousStringWrap>
-                        </div>
+                        </Grid>
 
                         <TitleFooter>
                             Submit your SKU: mail@getrealprice.com
