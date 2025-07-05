@@ -1,4 +1,4 @@
-import { display, fontSize, height, styled } from "@mui/system";
+import { display, fontSize, height, padding, styled } from "@mui/system";
 
 export const Parent = styled("div")(() => ({
     display: "grid",
@@ -15,6 +15,10 @@ export const Parent = styled("div")(() => ({
         display: "flex",
         flexDirection: "column",
         height: "100%",
+    },
+
+    "@media (max-width: 560px)": {
+        padding: "0",
     },
 }));
 

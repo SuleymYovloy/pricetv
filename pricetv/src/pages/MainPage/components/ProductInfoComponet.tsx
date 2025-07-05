@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useAppSelector } from "../../../hooks/redux";
 
 import { Grid } from "@mui/material";
-import { styled } from "@mui/system";
+import { display, styled } from "@mui/system";
 
 import { funSliced } from "../../../utils/sliced";
 
@@ -166,21 +166,8 @@ export const ProductInfoComponet = ({
                         </PriceValue>
                     </PriceDetail>
                     <ProductSeparator />
-                    <Grid
-                        container
-                        direction="row"
-                        justifyContent="space-between"
-                        alignItems="center"
-                        wrap="nowrap"
-                        sx={{ width: "100%", marginTop: "10px" }}
-                    >
-                        <Grid
-                            container
-                            direction="column"
-                            justifyContent="space-between"
-                            alignItems="flex-start"
-                            sx={{ width: "50%" }}
-                        >
+                    <Indicates>
+                        <IndicatesTitles>
                             <PricePeriod>
                                 price from:{" "}
                                 <span>
@@ -191,7 +178,7 @@ export const ProductInfoComponet = ({
                                 price up to:{" "}
                                 <span>{priceStartAndEndDate.endPriceData}</span>
                             </PricePeriod>
-                        </Grid>
+                        </IndicatesTitles>
                         <IndicateBlockWraper>
                             {ifoArr?.map((i, index) => (
                                 <IndicateBlockItem
@@ -203,7 +190,7 @@ export const ProductInfoComponet = ({
                                 </IndicateBlockItem>
                             ))}
                         </IndicateBlockWraper>
-                    </Grid>
+                    </Indicates>
                 </Grid>
             </InflationDetailsContainer>
         </ProductInfoWrapper>
@@ -239,6 +226,33 @@ const FlagImage = styled("img")(() => ({
     height: "30px",
     borderRadius: "4px",
     marginLeft: "10px",
+}));
+
+const Indicates = styled("div")(() => ({
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    wrap: "nowrap",
+    width: "100%",
+    marginTop: "10px",
+
+    "@media (max-width: 760px)": {
+        flexDirection: "column",
+        alignItems: "flex-start",
+    },
+}));
+
+const IndicatesTitles = styled("div")(() => ({
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    alignItems: "flex-start",
+    width: "50%",
+
+    "@media (max-width: 760px)": {
+        width: "100%",
+    },
 }));
 
 const DescriptionContainer = styled("div")(() => ({
@@ -281,6 +295,10 @@ const PriceValue = styled("span")(() => ({
     fontSize: "1.1rem",
     fontWeight: 500,
     color: "var(--text-primary)",
+
+    "@media (max-width: 760px)": {
+        fontSize: "0.8rem",
+    },
 }));
 
 const PricePeriod = styled("span")(() => ({
@@ -290,6 +308,10 @@ const PricePeriod = styled("span")(() => ({
     span: {
         fontWeight: 600,
         color: "var(--text-primary)",
+    },
+
+    "@media (max-width: 760px)": {
+        width: "100%",
     },
 }));
 
